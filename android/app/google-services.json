@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "591411908603",
+    "project_id": "shoghlmataem-88436",
+    "storage_bucket": "shoghlmataem-88436.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591411908603:android:4e447d07397f54937a455e",
+        "android_client_info": {
+          "package_name": "com.devetechno.mobilegomla"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvIAv0vlN4gy3UZQmBlah9PZeOOee9dfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

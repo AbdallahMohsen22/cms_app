@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD9M7zT3O3JvVlYoz_dhYS5u8HZfl-PtHo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>591411908603</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.devetechno.mobilegomla</string>
+	<key>PROJECT_ID</key>
+	<string>shoghlmataem-88436</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shoghlmataem-88436.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:591411908603:ios:a720a8f786dbc0ef7a455e</string>
+</dict>
+</plist>
