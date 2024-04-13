@@ -244,7 +244,7 @@ lunsh() async {
                                 color: Theme.of(context).colorScheme.onSecondaryContainer),)),
                             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                 Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall,vertical: Dimensions.paddingSizeExtraSmall),
-                                  child: Padding(padding: const EdgeInsets.only(top: 20, left: 50,bottom: Dimensions.paddingSizeSmall),
+                                  child: Padding(padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
                                       child: TitleRow(title: getTranslated('featured_products', context),
                                           onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (_) => AllProductScreen(productType: ProductType.featuredProduct))))),
                                 ),

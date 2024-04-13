@@ -82,37 +82,50 @@ class AllCategoryScreen extends StatelessWidget {
                       },
                     ),
                   );
-                }else if (subCategory.subSubCategories!.isNotEmpty) { //subSubCategory isNotEmpty
+                }else if (subCategory.subSubCategories!.isNotEmpty) { //subSubCategory isNotEmptyyyy
                   return Ink(
                     child: Theme(
                       data: Provider.of<ThemeProvider>(context).darkTheme ? ThemeData.dark() : ThemeData.light(),
                       child: ExpansionTile(
-                        leading:  CircleAvatar(
-
-                            child: CustomImage(image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls!.categoryImageUrl}'
-                                           '/${subCategory.icon}',)
-                        ),
-                        //iconColor: Colors.cyanAccent,
                         key: Key('${Provider.of<CategoryProvider>(context).categorySelectedIndex}$index'),
                         title: Text(subCategory.name!,style: titilliumSemiBold.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color), maxLines: 2, overflow: TextOverflow.ellipsis),
+                        leading:  CircleAvatar(
+                            child: CustomImage(image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls!.categoryImageUrl}'
+                                           '/${subCategory.icon}')
+                        ),
+                        //iconColor: Colors.cyanAccent,
+
                         backgroundColor: Theme.of(context).primaryColor, //color of ExpansionTile
                         children: _getSubSubCategories(context, subCategory),
                       ),
                     ),
                   );
-                } else {
-                  return Ink(
-                    color: Theme.of(context).highlightColor,
-                    child: ListTile(
-                      title: Text(subCategory.name!, style: titilliumSemiBold, maxLines: 2, overflow: TextOverflow.ellipsis),
-                      trailing: Icon(Icons.navigate_next, color: Theme.of(context).textTheme.bodyLarge!.color),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
-                          isBrand: false,
-                          id: subCategory.id.toString(),
-                          name: subCategory.name,
-                        )));
-                      },
+
+
+                }else {
+                  return Ink(  //subSubCategory isEmptyyyy
+                    // color: Theme.of(context).highlightColor,
+                    child: Theme(
+                      data: Provider.of<ThemeProvider>(context).darkTheme ? ThemeData.dark() : ThemeData.light(),
+                      child: ExpansionTile(
+                        key: Key('${Provider.of<CategoryProvider>(context).categorySelectedIndex}$index'),
+                        title: Text(subCategory.name!, style: titilliumSemiBold, maxLines: 2, overflow: TextOverflow.ellipsis),
+                        // trailing: Icon(Icons.navigate_next, color: Theme.of(context).textTheme.bodyLarge!.color),
+                        leading: CircleAvatar(
+                            child: CustomImage(image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls!.categoryImageUrl}'
+                                '/${subCategory.icon}',)
+                        ),
+                        backgroundColor: Theme.of(context).primaryColor,
+                        children: _getSubSubCategories(context, subCategory),
+
+                        // onTap: () {
+                        //   Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
+                        //     isBrand: false,
+                        //     id: subCategory.id.toString(),
+                        //     name: subCategory.name,
+                        //   )));
+                        // },
+                      ),
                     ),
                   );
                 }
@@ -129,7 +142,7 @@ class AllCategoryScreen extends StatelessWidget {
   List<Widget> _getSubSubCategories(BuildContext context, SubCategory subCategory) {
     List<Widget> subSubCategories = [];
     subSubCategories.add(Container(
-      color: ColorResources.getIconBg(context),
+       color: ColorResources.getIconBg(context),
       margin: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
       child: ListTile(
         title: Row(

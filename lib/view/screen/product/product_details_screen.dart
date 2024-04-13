@@ -56,7 +56,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Scaffold(
       appBar: CustomAppBar(title: getTranslated('product_details', context)),
 
-      body: RefreshIndicator(onRefresh: ()async => _loadData(context),
+      body: RefreshIndicator(
+        onRefresh: ()async => _loadData(context),
         child: Consumer<ProductDetailsProvider>(
           builder: (context, details, child) {
             return SingleChildScrollView(

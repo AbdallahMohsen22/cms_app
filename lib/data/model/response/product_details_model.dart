@@ -36,6 +36,7 @@ class ProductDetailsModel {
   String? _discountType;
   int? _currentStock;
   int? _minimumOrderQty;
+  int? _maxOrderQty;
   String? _details;
   int? _freeShipping;
   String? _createdAt;
@@ -92,6 +93,7 @@ class ProductDetailsModel {
         String? discountType,
         int? currentStock,
         int? minimumOrderQty,
+        int? maxOrderQty,
         String? details,
         int? freeShipping,
         String? createdAt,
@@ -215,6 +217,9 @@ class ProductDetailsModel {
     if (minimumOrderQty != null) {
       _minimumOrderQty = minimumOrderQty;
     }
+    if (maxOrderQty != null) {
+      _maxOrderQty = maxOrderQty;
+    }
     if (details != null) {
       _details = details;
     }
@@ -308,6 +313,7 @@ class ProductDetailsModel {
   String? get discountType => _discountType;
   int? get currentStock => _currentStock;
   int? get minimumOrderQty => _minimumOrderQty;
+  int? get maxOrderQty => _maxOrderQty;
   String? get details => _details;
   int? get freeShipping => _freeShipping;
   String? get createdAt => _createdAt;
@@ -390,6 +396,12 @@ class ProductDetailsModel {
       _minimumOrderQty = int.parse(json['minimum_order_qty'].toString());
     }else{
       _minimumOrderQty = 1;
+    }
+
+    if(json['maximum_order_qty'] != null){
+      _maxOrderQty = int.parse(json['maximum_order_qty'].toString());
+    }else{
+      _maxOrderQty = _currentStock;
     }
 
     _details = json['details'];

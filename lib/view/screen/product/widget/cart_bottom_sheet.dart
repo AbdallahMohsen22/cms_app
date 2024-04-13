@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_details_model.dart' as pd;
@@ -126,7 +127,8 @@ class CartBottomSheetState extends State<CartBottomSheet> {
 
                 // Product details
                 Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.homePagePadding),
-                  child: Column(children: [
+                  child: Column(
+                    children: [
                       Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Stack(children: [
 
@@ -138,7 +140,7 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                                 '${Provider.of<SplashProvider>(context,listen: false).baseUrls!.productImageUrl}/$colorWiseSelectedImage':
                                 '${Provider.of<SplashProvider>(context,listen: false).baseUrls!.productThumbnailUrl}/${widget.product!.thumbnail}')
                               ),
-                            ),
+                            ), // image
 
                             widget.product!.discount! > 0 ?
                             Container(width: 100,
@@ -150,36 +152,47 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                                   child: Text(PriceConverter.percentageCalculation(context, widget.product!.unitPrice,
                                       widget.product!.discount, widget.product!.discountType),
                                       style: titilliumRegular.copyWith(color: Colors.white,
-                                          fontSize: Dimensions.fontSizeDefault))),
-                            ) : const SizedBox(width: 93),
+                                          fontSize: Dimensions.fontSizeDefault),maxLines: 1,)),
+                            ) : const SizedBox(width: 93), //discount over image
                           ],
                         ),
                         const SizedBox(width: 20),
-                        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Text(widget.product!.name ?? '',
-                                style: titilliumRegular.copyWith(fontSize: Dimensions.fontSizeLarge),
-                                maxLines: 2, overflow: TextOverflow.ellipsis),
 
-                                const SizedBox(height: Dimensions.paddingSizeSmall),
-                                Row(children: [
-                                  const Icon(Icons.star_rate_rounded,color: Colors.orange),
+                        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(widget.product!.name ?? '',
+                                style: titilliumRegular.copyWith(fontSize: Dimensions.fontSizeLarge),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                            ),
+
+                              const SizedBox(height: Dimensions.paddingSizeSmall),
+
+                              Row(children: [
+                                const Icon(Icons.star_rate_rounded,color: Colors.orange),
                                   Text(double.parse(ratting).toStringAsFixed(1),
                                       style: titilliumSemiBold.copyWith(fontSize: Dimensions.fontSizeLarge),
                                       maxLines: 2, overflow: TextOverflow.ellipsis),],),
 
-                          const SizedBox(height:  Dimensions.paddingSizeSmall),
+                              const SizedBox(height:  Dimensions.paddingSizeSmall),
 
-
-                          Row(children: [
-                            const SizedBox(width: Dimensions.paddingSizeDefault),
-                            widget.product!.discount! > 0 ? Text(
-                              PriceConverter.convertPrice(context, widget.product!.unitPrice),
-                              style: titilliumRegular.copyWith(color: ColorResources.getRed(context),
+                              Row(children: [
+                                // const SizedBox(width: Dimensions.paddingSizeDefault),
+                                widget.product!.discount! > 0 ? Text(
+                                  PriceConverter.convertPrice(context, widget.product!.unitPrice),
+                                  style: titilliumRegular.copyWith(color: ColorResources.getRed(context),
                                   decoration: TextDecoration.lineThrough),
-                            ) : const SizedBox(),
-                            const SizedBox(width: Dimensions.paddingSizeDefault),
-                            Text(PriceConverter.convertPrice(context, widget.product!.unitPrice, discountType: widget.product!.discountType, discount: widget.product!.discount),
-                              style: titilliumRegular.copyWith(color: ColorResources.getPrimary(context), fontSize: Dimensions.fontSizeExtraLarge),),],),]),),]),],),
+                                ) : const SizedBox(),
+                                const SizedBox(width: Dimensions.paddingSizeDefault),
+                                Expanded( //discount, price
+                                  child: Text(
+                                    PriceConverter.convertPrice(context, widget.product!.unitPrice, 
+                                        discountType: widget.product!.discountType, 
+                                        discount: widget.product!.discount),
+
+                                    style: titilliumRegular.copyWith(color: ColorResources.getPrimary(context), 
+                                        fontSize: Dimensions.fontSizeExtraLarge),maxLines: 1,),
+                                ),],),]),),]),],), //productName
                 ),
 
 
@@ -190,7 +203,7 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.homePagePadding),
                   child: Row( children: [
                     Text('${getTranslated('select_variant', context)} : ',
-                        style: titilliumRegular.copyWith(fontSize: Dimensions.fontSizeDefault)),
+                        style: titilliumRegular.copyWith(fontSize: Dimensions.fontSizeDefault)), //Available Color
                     const SizedBox(width: Dimensions.paddingSizeDefault),
                     Expanded(child: SizedBox(height: 40,
                         child: ListView.builder(
@@ -224,7 +237,7 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                       ),
                     ),
                   ]),
-                ) : const SizedBox(),
+                ) : const SizedBox(), //colors
                 (widget.product!.colors != null && widget.product!.colors!.isNotEmpty) ? const SizedBox(height: Dimensions.paddingSizeSmall) : const SizedBox(),
 
 
@@ -257,7 +270,7 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
-                                          color: details.variationIndex![index] == i? Theme.of(context).primaryColor: Theme.of(context).colorScheme.onTertiary,
+                                          color: details.variationIndex![index] == i ? Theme.of(context).primaryColor: Theme.of(context).colorScheme.onTertiary,
                                         ),
                                         child: Container(decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
@@ -295,15 +308,23 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.homePagePadding),
                   child: Row(children: [
                     Text(getTranslated('quantity', context)!, style: robotoBold),
-                    QuantityButton(isIncrement: false, quantity: details.quantity,
-                        stock: stock, minimumOrderQuantity: widget.product!.minimumOrderQty,
-                        digitalProduct: widget.product!.productType == "digital"),
+                    QuantityButton(
+                      isIncrement: false,
+                      quantity: details.quantity,
+                      stock: stock,
+                      digitalProduct: widget.product!.productType == "digital",
+                      minimumOrderQuantity: widget.product!.minimumOrderQty,
+                      maxOrderQuantity: widget.product!.maxOrderQty,),
 
                     Text(details.quantity.toString(), style: titilliumSemiBold),
 
-                    QuantityButton(isIncrement: true, quantity: details.quantity, stock: stock,
-                        minimumOrderQuantity: widget.product!.minimumOrderQty,
-                        digitalProduct: widget.product!.productType == "digital"),
+                    QuantityButton(
+                      isIncrement: true,
+                      quantity: details.quantity,
+                      stock: stock,
+                      digitalProduct: widget.product!.productType == "digital",
+                      minimumOrderQuantity: widget.product!.minimumOrderQty,
+                      maxOrderQuantity: widget.product!.maxOrderQty,),
                   ]),
                 ),
                 const SizedBox(height: Dimensions.paddingSizeSmall),
@@ -330,10 +351,10 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                 ),
                 const SizedBox(height: Dimensions.paddingSizeSmall),
 
-                (stock! < widget.product!.minimumOrderQty! && widget.product!.productType == "physical")?
+                (stock! < widget.product!.minimumOrderQty! && widget.product!.productType == "physical")? //stock < minimumOrderQty
               CustomButton(backgroundColor: Theme.of(context).colorScheme.error.withOpacity(.10),
                   textColor: Theme.of(context).colorScheme.error,
-                  buttonText: getTranslated('out_of_stock', context)):
+                  buttonText: getTranslated('out_of_stock', context)) :
 
                 Provider.of<CartProvider>(context).addToCartLoading ?
                     const Center(child: Padding(
@@ -347,7 +368,9 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
 
                       Expanded(
-                        child: CustomButton(isBuy:true,radius: 6,
+                        child: CustomButton(
+                            isBuy:true,
+                            radius: 6,
                             buttonText: getTranslated(stock < widget.product!.minimumOrderQty! && widget.product!.productType == "physical" ? 'out_of_stock' : 'buy_now', context),
                             onTap: stock < widget.product!.minimumOrderQty!  && widget.product!.productType == "physical" ? null :() {
                               if(stock! >= widget.product!.minimumOrderQty! || widget.product!.productType == "digital") {
@@ -392,20 +415,25 @@ class CartBottomSheetState extends State<CartBottomSheet> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CartScreen()));
   }
 }
-
+// max qty
 class QuantityButton extends StatelessWidget {
   final bool isIncrement;
   final int? quantity;
   final bool isCartWidget;
   final int? stock;
   final int? minimumOrderQuantity;
+  final int? maxOrderQuantity;
+
   final bool digitalProduct;
 
   const QuantityButton({Key? key,
     required this.isIncrement,
     required this.quantity,
     required this.stock,
-    this.isCartWidget = false,required this.minimumOrderQuantity,required this.digitalProduct,
+    this.isCartWidget = false,
+    required this.minimumOrderQuantity,
+    required this.maxOrderQuantity,
+    required this.digitalProduct,
   }) : super(key: key);
 
   @override
@@ -418,7 +446,8 @@ class QuantityButton extends StatelessWidget {
           }else{
            showCustomSnackBar('${getTranslated('minimum_quantity_is', context)}$minimumOrderQuantity', context, isToaster: true);
           }
-        } else if (isIncrement && quantity! < stock! || digitalProduct) {
+        } else if (isIncrement && quantity! < stock! && quantity! < maxOrderQuantity! || digitalProduct) {
+          print("maxOrderQuantity ============> $maxOrderQuantity");
           Provider.of<ProductDetailsProvider>(context, listen: false).setQuantity(quantity! + 1);
         }
 
@@ -431,7 +460,8 @@ class QuantityButton extends StatelessWidget {
         ),
         child: Icon(
           isIncrement ? Icons.add : Icons.remove,
-          color: isIncrement ? quantity! >= stock! && !digitalProduct? ColorResources.getLowGreen(context) : ColorResources.getPrimary(context)
+          color: isIncrement ? quantity! >= stock! && !digitalProduct? ColorResources.getLowGreen(context)
+              : ColorResources.getPrimary(context)
               : quantity! > 1
               ? ColorResources.getPrimary(context)
               : ColorResources.getTextTitle(context),
