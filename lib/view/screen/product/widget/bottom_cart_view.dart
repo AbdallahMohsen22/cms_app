@@ -58,10 +58,7 @@ class _BottomCartViewState extends State<BottomCartView> {
   @override
   Widget build(BuildContext context) {
 
-
-
-
-    return Container(
+    return Container( // Add to cart
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -69,11 +66,14 @@ class _BottomCartViewState extends State<BottomCartView> {
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
         boxShadow: [BoxShadow(color: Theme.of(context).hintColor, blurRadius: .5, spreadRadius: .1)],
       ),
-      child: Row(children: [
-        Expanded(flex: 3, child: Padding(
-          padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
-          child: Stack(children: [
-            GestureDetector(
+      child:
+      Row(children: [
+        Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
+              child: Stack(children: [
+                GestureDetector(
                 onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context)=>const CartScreen()
@@ -94,7 +94,8 @@ class _BottomCartViewState extends State<BottomCartView> {
                   ),
                   child: Text(
                     cart.cartList.length.toString(),
-                    style: titilliumSemiBold.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color:Theme.of(context).highlightColor),
+                    style: titilliumSemiBold.copyWith(fontSize: Dimensions.fontSizeExtraSmall,
+                        color:Theme.of(context).highlightColor),
                   ),
                 );
               }),
@@ -125,10 +126,11 @@ class _BottomCartViewState extends State<BottomCartView> {
             ),
             child: Text(
               getTranslated('add_to_cart', context)!,
-              style: titilliumSemiBold.copyWith(fontSize: Dimensions.fontSizeLarge, color: Provider.of<ThemeProvider>(context, listen: false).darkTheme? Theme.of(context).hintColor : Theme.of(context).highlightColor),
+              style: titilliumSemiBold.copyWith(fontSize: Dimensions.fontSizeLarge,
+                  color: Provider.of<ThemeProvider>(context, listen: false).darkTheme? Theme.of(context).hintColor : Theme.of(context).highlightColor),
             ),
           ),
-        )),
+        )), //Add to Cart
       ]),
     );
   }

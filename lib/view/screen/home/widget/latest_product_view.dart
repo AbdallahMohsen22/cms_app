@@ -26,7 +26,8 @@ class LatestProductView extends StatelessWidget {
         productList = prodProvider.lProductList;
 
         return productList != null? productList.isNotEmpty ?
-          Column(children: [
+          Column(
+            children: [
               TitleRow(title: getTranslated('latest_products', context),
                   onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (_) => AllProductScreen(productType: ProductType.latestProduct)))),
 

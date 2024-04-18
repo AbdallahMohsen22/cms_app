@@ -31,7 +31,7 @@ class FeaturedProductView extends StatelessWidget {
               isHome? Padding(padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
                 child: CarouselSlider.builder(
                   options: CarouselOptions(
-                    viewportFraction: .5,
+                    viewportFraction: .65,
                     autoPlay: false,
                     aspectRatio: MediaQuery.of(context).size.width/310,
                     enlargeFactor: 0.3,

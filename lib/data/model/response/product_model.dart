@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_sixvalley_ecommerce/data/model/response/seller_model.dart';
+
 class ProductModel {
   int? totalSize;
   int? limit;
@@ -23,7 +25,8 @@ class ProductModel {
     offset = int.parse(json['offset'].toString());
     if (json['products'] != null) {
       _products = [];
-      json['products'].forEach((v) {_products!.add(Product.fromJson(v));
+      json['products'].forEach((v) {
+        _products!.add(Product.fromJson(v));
       });
     }
   }
@@ -68,6 +71,7 @@ class Product {
   int? _minimumOrderQty;
   int? wishList;
   Brand? brand;
+  Seller? _seller;
 
 
 
@@ -114,6 +118,7 @@ class Product {
         int? minimumOrderQty,
         int? wishList,
         Brand? brand,
+        Seller? seller,
 
       }) {
     _id = id;
@@ -197,6 +202,7 @@ class Product {
   int? get reviewCount => _reviewCount;
   String? get videoUrl => _videoUrl;
   int? get minimumOrderQuantity => _minimumOrderQty;
+  Seller? get seller => _seller;
 
   Product.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -349,6 +355,9 @@ class Product {
         wishList = int.parse(json['wish_list_count'].toString());
       }
 
+    }
+    if (seller != null) {
+      _seller = seller;
     }
     brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
 

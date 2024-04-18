@@ -42,7 +42,7 @@ class CategoryView extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, // number of items in each row
               mainAxisSpacing:10, // spacing between rows
-              crossAxisSpacing: 0, // spacing between columns
+              crossAxisSpacing: 5, // spacing between columns
             ),
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,

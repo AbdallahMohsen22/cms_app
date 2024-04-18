@@ -21,7 +21,8 @@ class LatestProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String ratting = productModel.rating != null && productModel.rating!.isNotEmpty? productModel.rating![0].average! : "0";
 
-    return InkWell(onTap: () {
+    return InkWell(
+      onTap: () {
       Navigator.push(context, PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 1000),
         pageBuilder: (context, anim1, anim2) => ProductDetails(productId: productModel.id,slug: productModel.slug),
@@ -76,9 +77,10 @@ class LatestProductWidget extends StatelessWidget {
                       const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
 
-                      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                         productModel.discount!= null && productModel.discount! > 0 ?
-                        Text(PriceConverter.convertPrice(context, productModel.unitPrice),
+                        Text(PriceConverter.convertPrice(context, productModel.discount),
                           style: titleRegular.copyWith(color: ColorResources.hintTextColor,
                             decoration: TextDecoration.lineThrough,
                             fontSize: Dimensions.fontSizeExtraSmall)) : const SizedBox.shrink(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/category.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/localization_provider.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
@@ -34,11 +35,13 @@ class CategoryWidget extends StatelessWidget {
         ),
 
         const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-        Center(child: SizedBox(width: 90,
-            child: Text(category.name!, textAlign: TextAlign.center, maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-              style: titilliumRegular.copyWith(fontSize: 17,
-                  color: ColorResources.getTextTitle(context))),
+        Expanded(
+          child: Center(child: SizedBox(width: 90,
+              child: Text(category.name!, textAlign: TextAlign.center, maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: titilliumRegular.copyWith(fontSize: 17,
+                    color: ColorResources.getTextTitle(context))),
+            ),
           ),
         ),
 

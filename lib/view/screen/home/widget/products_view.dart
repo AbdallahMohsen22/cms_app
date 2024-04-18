@@ -67,7 +67,8 @@ class ProductView extends StatelessWidget {
           productList = prodProvider.justForYouProduct;
         }
 
-        return Column(children: [
+        return Column(
+            children: [
 
 
           !prodProvider.filterFirstLoading ? (productList != null && productList.isNotEmpty) ?

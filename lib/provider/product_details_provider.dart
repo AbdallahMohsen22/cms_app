@@ -93,6 +93,7 @@ class ProductDetailsProvider extends ChangeNotifier {
   }
 
 
+
   void initData(ProductDetailsModel product, int? minimumOrderQuantity, BuildContext context) {
     _variantIndex = 0;
     _quantity = minimumOrderQuantity;
