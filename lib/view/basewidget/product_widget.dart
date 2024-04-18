@@ -94,17 +94,18 @@ class _ProductWidgetState extends State<ProductWidget> {
                           fit: BoxFit.cover,))),
 
             // Product Details
-            Padding(padding: const EdgeInsets.only(top :Dimensions.paddingSizeSmall,bottom: 5, left: 5,right: 5),
-              child: Center(
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+
+                Padding(padding: const EdgeInsets.only(top :Dimensions.paddingSizeSmall,bottom: 5, left: 5,right: 5),
+                  child: Center(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
 
                   if(widget.productModel.currentStock! < widget.productModel.minimumOrderQuantity! && widget.productModel.productType == 'physical')
-                  Padding(padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeExtraSmall),
-                    child: Text(getTranslated('out_of_stock', context)??'', style: textRegular.copyWith(color: const Color(0xFFF36A6A)))),
+                    Padding(padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeExtraSmall),
+                        child: Text(getTranslated('out_of_stock', context)??'', style: textRegular.copyWith(color: const Color(0xFFF36A6A)))),
 
 
-                    Row(mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                      Row(mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
 
                           const Icon(Icons.star_rate_rounded, color: Colors.orange,size: 20),
                           Padding(padding: const EdgeInsets.symmetric(horizontal: 2.0),
